@@ -3,6 +3,7 @@
 import os
 import sys
 import dbm
+import socket
 
 def main():
     while 1:
@@ -19,8 +20,9 @@ def main():
         print '\t[5]Launch Sender'
         print
         print '\t[6]Scan IPs'
-        print '\t[7]Show my info'
-        print '\t[8]About & Help'
+        print '\t[7]My IP'
+        print '\t[8]Show my info'
+        print '\t[9]About & Help'
         print
         print '\t[0]Exit'
         print
@@ -34,8 +36,9 @@ def main():
         '4': launchReceiver,
         '5': launchSender,
         '6': searchIP,
-        '7': showInfo,
-        '8': talkerHelp,
+        '7': myIP,
+        '8': showInfo,
+        '9': talkerHelp,
 
         '0': exit
         }
@@ -45,7 +48,7 @@ def main():
         if not choice.isdigit():
             print 'Invalid Input'
             continue
-        if int(choice) > 8 or int(choice) < 0:
+        if int(choice) > 9 or int(choice) < 0:
             print 'Invalid Input'
             continue
         
@@ -124,6 +127,16 @@ def launchSender():
 def searchIP():
     ip = raw_input('Input 3 digit of your IP(example: 192.168.1): ')
     os.system('nmap -sn %s.*' % ip)
+    print
+    print
+    print
+    print
+    raw_input('Press Enter to return')
+    return
+
+def myIP():
+    localIP = socket.gethostbyname(socket.gethostname())
+    print 'My IP is:', localIP
     print
     print
     print
